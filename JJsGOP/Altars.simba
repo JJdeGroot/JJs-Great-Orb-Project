@@ -36,21 +36,21 @@ begin
   begin
     name        := 'Air altar';
     coords      := IntToBox(0, 0, 0, 0);
-    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+    altarColor  := [8418940, 5, [2, [0.34, 0.10, 0.00]]];
   end;
 
   with altars[MIND] do
   begin
     name        := 'Mind altar';
     coords      := IntToBox(0, 0, 0, 0);
-    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+    altarColor  := [10655134, 4, [2, [0.33, 0.32, 0.00]]];
   end;
 
   with altars[WATER] do
   begin
     name        := 'Water altar';
     coords      := IntToBox(0, 0, 0, 0);
-    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+    altarColor  := [7103337, 2, [2, [1.39, 0.42, 0.00]]];
   end;
 
   with altars[EARTH] do
@@ -64,7 +64,7 @@ begin
   begin
     name        := 'Fire altar';
     coords      := IntToBox(0, 0, 0, 0);
-    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+    altarColor  := [6906213, 2, [2, [1.39, 0.48, 0.00]]];
   end;
 
   with altars[BODY] do
@@ -79,23 +79,52 @@ end;
 
 function clickAltar(): boolean;
 var
+  i, L: Integer;
+  p: TPoint;
   bounds: TBox;
   tpa: TPointArray;
   atpa: T2DPointArray;
 begin
   result := false;
-  writeln('Click altar');
+  smartImage.clear();
+  writeln('Click altar called');
 
   // Gather colors
   bounds := mainscreen.getBounds();
   altars[BODY].altarColor.gatherIn(tpa, bounds);
-  writeln('TPA length: ' + toStr(length(tpa)));
 
-  atpa := tpa.cluster(tpaWidth, tpaHeight);
-  atpa.filterBetween(filterHigh, filterLow);
-  atpa.sortBySize();
-  writeln('Atpa size: ' + toStr(length(atpa)));
+  // Check TPA length
+  L := length(tpa);
+  if L>0 then
+  begin
+    // Cluster, filter & sort into ATPA
+    atpa := tpa.cluster(tpaWidth, tpaHeight);
+    atpa.filterBetween(filterHigh, filterLow);
+    atpa.sortBySize();
 
-  smartImage.debugATPA(atpa);
+
+    // Check ATPA length
+    L := length(atpa);
+    if L>0 then
+    begin
+      smartImage.debugATPA(atpa);
+
+      // Attempt to click altar
+      for i:=0 to L do
+      begin
+        writeln('I: ' + toStr(i));
+        bounds := atpa[i].getBounds();
+        gaussBox(p, bounds);
+        mouse(p);
+
+        if(isMouseOverText(['Craft', 'rune', 'Altar'], 500)) then
+          ClickMouse(p.X, p.Y, 1);
+
+        break;
+      end;
+    end;
+  end;
+
+
 
 end;
