@@ -1,0 +1,53 @@
+{*
+
+Positioning methods
+- setupSPS()
+- getArea()
+- getRandomBoxPoint()
+- walkToAltar()
+
+*}
+
+var
+  gop_map: TSPSArea;
+
+// Sets up SPS
+procedure setupSPS();
+begin
+  spsAnyAngle := true;
+  gop_map.setup('great_orb_project', 'RuneScape_Other\');
+end;
+
+// Returns the area where the player is located in
+function getArea: Integer;
+var
+  location: TPoint;
+begin
+  result := -1;
+  location := gop_map.GetPlayerPos();
+  print('Location: ' + toStr(location));
+
+end;
+
+// Returns a random point in a box
+function getRandomBoxPoint(box: TBox): TPoint;
+begin
+  result.x := RandomRange(box.X1, box.X2);
+  result.y := RandomRange(box.Y1, box.Y2);
+end;
+
+// Walks to the altar
+function walkToAltar: Boolean;
+var
+  box: TBox;
+  pos: TPoint;
+
+begin
+  box := IntToBox(261, 222, 261+22, 222+22);
+  writeln('Box: '+ toStr(box));
+
+  pos := getRandomBoxPoint(box);
+  writeln('Random point: ' + toStr(pos));
+
+  result := gop_map.walkToPos(pos);
+end;

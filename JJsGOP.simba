@@ -1,0 +1,51 @@
+{*
+
+JJ's Great Orb Project
+Forum thread: TODO
+Creator:      https://villavu.com/forum/member.php?u=70743
+
+Requirements:
+- Properly installed Simba: https://villavu.com/forum/showthread.php?t=47714
+- Screen size fixed, graphics lowest, interface 'Old School', Slim Headers enabled, 0% transparency, etc.
+- Move the file great_orb_project.png to 'Simba/Includes/SPS/img/runescape_other'
+- Make sure you have all extra required Simba files in the folder 'Simba/Scripts/JJsGOP'
+- You need 50 RuneCrafting to play the Great Orb Project minigame
+- Start the script in the Great Orb Project lobby, located on the 3rd floor of the Wizard Tower
+
+*}
+
+program JJsGOP;
+{$DEFINE SMART}
+{$i srl-6/srl.simba}
+{$i sps/lib/sps-rs3.simba}
+{$i JJsGOP/Altars.simba}
+{$i JJsGOP/Positioning.simba}
+
+procedure setup();
+begin
+  // SRL
+  smartEnableDrawing := true;
+  clearDebug();
+  setupSRL();
+
+  // Positioning
+  setupSPS();
+
+  // Altars
+  setupAltars();
+
+  //mainScreen.setAngle(MS_ANGLE_HIGH);
+
+end;
+
+
+begin
+  setup();
+
+  //getArea();
+  //walkToAltar();
+
+  clickAltar();
+
+  //Wait(10000);
+end.

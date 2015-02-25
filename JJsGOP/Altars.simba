@@ -1,0 +1,101 @@
+{*
+
+Altar data
+
+*}
+
+const
+  // Altar order and indices
+  AIR   = 0;
+  MIND  = 1;
+  WATER = 2;
+  EARTH = 3;
+  FIRE  = 4;
+  BODY  = 5;
+  tpaWidth = 5;
+  tpaHeight = 20;
+  filterHigh = 0;
+  filterLow = 10;
+
+type
+  TAltar = record
+    name: String;
+    coords: TBox;
+    altarColor: TColorData;
+  end;
+
+var
+  altars: array of TAltar;
+
+// Sets up altar data
+procedure setupAltars();
+begin
+  setLength(altars, 6);
+
+  with altars[AIR] do
+  begin
+    name        := 'Air altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+  end;
+
+  with altars[MIND] do
+  begin
+    name        := 'Mind altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+  end;
+
+  with altars[WATER] do
+  begin
+    name        := 'Water altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+  end;
+
+  with altars[EARTH] do
+  begin
+    name        := 'Earth altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [6445663, 4, [2, [0.53, 0.19, 0.00]]];
+  end;
+
+  with altars[FIRE] do
+  begin
+    name        := 'Fire altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [0, 0, [2, [0.00, 0.00, 0.00]]];
+  end;
+
+  with altars[BODY] do
+  begin
+    name        := 'Body altar';
+    coords      := IntToBox(0, 0, 0, 0);
+    altarColor  := [9865874, 5, [2, [0.35, 0.28, 0.00]]];
+  end;
+
+  writeln('Altar data: ' + toStr(altars));
+end;
+
+function clickAltar(): boolean;
+var
+  bounds: TBox;
+  tpa: TPointArray;
+  atpa: T2DPointArray;
+begin
+  result := false;
+  writeln('Click altar');
+
+  // Gather colors
+  bounds := mainscreen.getBounds();
+  altars[BODY].altarColor.gatherIn(tpa, bounds);
+  writeln('TPA length: ' + toStr(length(tpa)));
+
+  atpa := tpa.cluster(tpaWidth, tpaHeight);
+  atpa.filterBetween(filterHigh, filterLow);
+  atpa.sortBySize();
+  writeln('Atpa size: ' + toStr(length(atpa)));
+
+  smartImage.debugATPA(atpa);
+
+end;
