@@ -1,0 +1,47 @@
+{*
+  Hall
+*}
+
+const
+  // Teams
+  YELLOW = 0;
+  GREEN  = 1;
+
+type
+  THall = record
+    area: TBox;
+    portal: TBox;
+  end;
+
+type
+  TWizard = record
+    name: String;
+    position: TBox;
+  end;
+
+var
+  hall: THall;
+  acantha, vief: TWizard;
+
+
+// Sets up the hall data
+procedure setupHall();
+begin
+  // Hall
+  hall.area   := IntToBox(584, 332, 696, 444);
+  hall.portal := IntToBox(634, 362, 646, 374);
+  writeln('Hall data: ' + toStr(hall));
+
+  // Wizard Acantha (green team)
+  acantha.name     := 'Wizard Vief';
+  acantha.position := IntToBox(606, 378, 626, 390);
+  writeln('Acantha data: ' + toStr(acantha));
+
+  // Wizard Vief (yellow team)
+  vief.name       := 'Wizard Vief';
+  vief.position   := IntToBox(642, 402, 666, 418);
+  writeln('Vief data: ' + toStr(vief));
+
+end;
+
+
