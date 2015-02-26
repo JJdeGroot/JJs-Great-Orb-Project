@@ -1,14 +1,15 @@
 {*
 
 JJ's Great Orb Project
-Forum thread: TODO
-Creator:      https://villavu.com/forum/member.php?u=70743
+Forum thread:       -
+Development thread: https://villavu.com/forum/showthread.php?p=1332155
+Creator:            https://villavu.com/forum/member.php?u=70743
 
 Requirements:
 - Properly installed Simba: https://villavu.com/forum/showthread.php?t=47714
 - Screen size fixed, graphics lowest, interface 'Old School', Slim Headers enabled, 0% transparency, etc.
-- Move the file great_orb_project.png to 'Simba/Includes/SPS/img/runescape_other'
-- Make sure you have all extra required Simba files in the folder 'Simba/Scripts/JJsGOP'
+- Move the file great_orb_project.png to '/Simba/Includes/SPS/img/runescape_other'
+- Make sure you have all extra required Simba files in the folder 'JJsGOP'
 - You need 50 RuneCrafting to play the Great Orb Project minigame
 - Start the script in the Great Orb Project lobby, located on the 3rd floor of the Wizard Tower
 
@@ -32,20 +33,109 @@ begin
   setupSPS();
 
   // Altars
-  setupAltars();
+  //setupAltars();
 
   //mainScreen.setAngle(MS_ANGLE_HIGH);
 
 end;
 
+{*
+
+Lobby area
+584, 332 -> [112, 112] --> 696, 444
+
+Lobby portal
+634, 362 -> 646, 374
+
+Wizard Acantha
+606, 378 -> 626, 390
+
+Wizard Vief
+642, 402 -> 666, 418
+
+
+
+
+Air area
+42, 16 -> [190x200] --> 232, 216
+
+Air Altar
+134, 106 -> 146, 122
+
+Air portal
+122, 134 ->  130, 142
+
+
+
+Mind area
+272, 30 -> [222, 200] --> 494, 230
+
+Mind altar
+390, 102 -> 414, 118
+
+Mind portal
+394, 150 -> 406, 162
+
+
+
+Water area
+566, 34 -> [152, 152] --> 718, 186
+
+Water altar
+626, 98 -> 642, 114
+
+Water portal
+674, 118 -> 682, 126
+
+
+
+
+Earth area
+769, 18 -> [254, 216] --> 1024, 234
+
+Earth altar
+894, 102 -> 914, 122
+
+Earth portal
+886, 158 -> 894, 166
+
+
+
+
+
+Fire area
+26, 268 -> [172, 182] -> 198, 450
+
+Fire altar
+106, 362 -> 118, 374
+
+Fire portal
+94, 366 ->  102, 370
+
+
+
+Body area
+302, 312 -> [162, 162] -> 464, 474
+
+Body altar
+378, 382 -> 394, 394
+
+Body portal
+378, 406 -> 382, 414
+
+
+
+
+*}
+
 
 begin
   setup();
 
-  //getArea();
   //walkToAltar();
 
-  clickAltar();
+  //clickAltar();
+  getArea();
 
   //Wait(10000);
 end.
