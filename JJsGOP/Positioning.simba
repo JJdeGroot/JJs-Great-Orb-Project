@@ -21,12 +21,23 @@ end;
 // Returns the area where the player is located in
 function getArea: Integer;
 var
-  location: TPoint;
+  i: Integer;
+  pos: TPoint;
 begin
   result := -1;
-  location := gop_map.GetPlayerPos();
-  print('Location: ' + toStr(location));
+  pos := gop_map.GetPlayerPos();
+  print('Pos: ' + toStr(pos));
 
+  // For each altar check if our location is inside the area
+  for i:=0 to length(_altars) do
+    if (_altars[i].area.isPointInside(pos)) then
+    begin
+      result := i;
+      writeln('Area name: ' + toStr(_altars[i].name));
+      break;
+    end;
+
+  writeln('Area index: ' + toStr(result));
 end;
 
 // Returns a random point in a box

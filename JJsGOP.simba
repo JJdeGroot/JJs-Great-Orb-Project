@@ -19,8 +19,9 @@ program JJsGOP;
 {$DEFINE SMART}
 {$i srl-6/srl.simba}
 {$i sps/lib/sps-rs3.simba}
+{$i JJsGOP/Data.simba}
 {$i JJsGOP/Altars.simba}
-{$i JJsGOP/Hall.simba}
+{$i JJsGOP/Lobby.simba}
 {$i JJsGOP/Positioning.simba}
 
 procedure setup();
@@ -30,30 +31,31 @@ begin
   clearDebug();
   setupSRL();
 
-  // Positioning
+  // GOP
+  loadData();
   setupSPS();
-
-  // Altars
-  setupAltars();
-
-  // Hall
-  setupHall();
-
 
   //mainScreen.setAngle(MS_ANGLE_HIGH);
 
 end;
 
+procedure talk();
+var
+  text: String;
+begin
 
+  writeln(conversationBox.getSpeaker);
+  writeln(conversationBox.getChat);
+  writeln(toStr(conversationBox.getOptions));
 
-
+end;
 begin
   setup();
 
-  //walkToAltar();
+  //getArea();
 
-  //clickAltar();
-  getArea();
+  talk();
 
-  //Wait(10000);
+
+
 end.

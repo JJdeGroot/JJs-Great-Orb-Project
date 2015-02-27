@@ -1,95 +1,15 @@
 {*
 
-Altar data
+Altar methods
 
 *}
 
 const
-  // Altar order and indices
-  AIR   = 0;
-  MIND  = 1;
-  WATER = 2;
-  EARTH = 3;
-  FIRE  = 4;
-  BODY  = 5;
+  // Object finding
   tpaWidth = 5;
   tpaHeight = 20;
   filterHigh = 0;
   filterLow = 10;
-
-type
-  TAltar = record
-    name: String;
-    altarColor: TColorData;
-    area: TBox;
-    altar: TBox;
-    portal: TBox;
-  end;
-
-var
-  altars: array of TAltar;
-
-// Sets up altar data
-procedure setupAltars();
-begin
-  setLength(altars, 6);
-
-  with altars[AIR] do
-  begin
-    name        := 'Air altar';
-    area        := IntToBox(42, 16, 232, 216);
-    altar       := IntToBox(134, 106,146, 122);
-    portal      := IntToBox(122, 134, 130, 142);
-    altarColor  := [8418940, 5, [2, [0.34, 0.10, 0.00]]];
-  end;
-
-  with altars[MIND] do
-  begin
-    name        := 'Mind altar';
-    area        := IntToBox(272, 30, 494, 230);
-    altar       := IntToBox(390, 102, 414, 118);
-    portal      := IntToBox(394, 150, 406, 162);
-    altarColor  := [10655134, 4, [2, [0.33, 0.32, 0.00]]];
-  end;
-
-  with altars[WATER] do
-  begin
-    name        := 'Water altar';
-    area        := IntToBox(566, 34, 718, 186);
-    altar       := IntToBox(626, 98, 642, 114);
-    portal      := IntToBox(674, 118, 682, 126);
-    altarColor  := [7103337, 2, [2, [1.39, 0.42, 0.00]]];
-  end;
-
-  with altars[EARTH] do
-  begin
-    name        := 'Earth altar';
-    area        := IntToBox(769, 18, 1024, 234);
-    altar       := IntToBox(894, 102, 914, 122);
-    portal      := IntToBox(886, 158, 894, 166);
-    altarColor  := [6445663, 4, [2, [0.53, 0.19, 0.00]]];
-  end;
-
-  with altars[FIRE] do
-  begin
-    name        := 'Fire altar';
-    area        := IntToBox(26, 268, 198, 450);
-    altar       := IntToBox(106, 362, 118, 374);
-    portal      := IntToBox(94, 366,  102, 370);
-    altarColor  := [6906213, 2, [2, [1.39, 0.48, 0.00]]];
-  end;
-
-  with altars[BODY] do
-  begin
-    name        := 'Body altar';
-    area        := IntToBox(302, 312, 464, 474);
-    altar       := IntToBox(378, 382, 394, 394);
-    portal      := IntToBox(378, 406, 382, 414 );
-    altarColor  := [9865874, 5, [2, [0.35, 0.28, 0.00]]];
-  end;
-
-  writeln('Altar data: ' + toStr(altars));
-end;
 
 function clickAltar(): boolean;
 var
@@ -105,7 +25,7 @@ begin
 
   // Gather colors
   bounds := mainscreen.getBounds();
-  altars[BODY].altarColor.gatherIn(tpa, bounds);
+  _altars[BODY].altarColor.gatherIn(tpa, bounds);
 
   // Check TPA length
   L := length(tpa);

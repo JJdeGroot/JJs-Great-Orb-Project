@@ -1,0 +1,158 @@
+// Constants
+const
+  // Altar order and indices
+  AIR   = 0;
+  MIND  = 1;
+  WATER = 2;
+  EARTH = 3;
+  FIRE  = 4;
+  BODY  = 5;
+  // Teams
+  YELLOW = 0;
+  GREEN  = 1;
+
+
+// Area
+type TArea = record
+  name: String;
+  area: TBox;
+  portal: TBox;
+end;
+
+// Altar
+type TAltar = record(TArea)
+  altarColor: TColorData;
+  altar: TBox;
+end;
+
+// Wizard
+type TWizard = record
+  name: String;
+  position: TBox;
+  colors: TColorData;
+end;
+
+// Lobby
+type TLobby = record(TArea)
+  acantha: TWizard;
+  vief: TWizard;
+  wizards: TWizard;
+end;
+
+
+// Variables
+var
+  _lobby: TLobby;
+  _altars: array of TAltar;
+
+// Loads lobby data into variables
+procedure loadLobby();
+begin
+  // Lobby
+  with _lobby do
+  begin
+    name   := 'Lobby';
+    area   := IntToBox(584, 332, 696, 444);
+    portal := IntToBox(634, 362, 646, 374);
+
+    // Wizard Acantha (green team)
+    with acantha do
+    begin
+      name     := 'Wizard Acantha';
+      position := IntToBox(606, 378, 626, 390);
+      colors   := [5140301, 7, [2, [0.11, 0.81, 0.00]]];
+    end;
+
+    // Wizard Vief (yellow team)
+    with vief do
+    begin
+      name     := 'Wizard Vief';
+      position := IntToBox(642, 402, 666, 418);
+      colors   := [5542581, 9, [2, [0.04, 0.93, 0.00]]];
+    end;
+
+    // Wizards (random team)
+    with wizards do
+    begin
+      name     := 'Wizard';
+      position := _lobby.area;
+      colors   := [9994848, 8, [2, [0.07, 1.23, 0.00]]];
+    end;
+  end;
+
+  print('Lobby data: ' + toStr(_lobby));
+end;
+
+
+// Loads altar data into variables
+procedure loadAltars();
+begin
+  setLength(_altars, 6);
+
+  with _altars[AIR] do
+  begin
+    name        := 'Air altar';
+    area        := IntToBox(42, 16, 232, 216);
+    altar       := IntToBox(134, 106,146, 122);
+    portal      := IntToBox(122, 134, 130, 142);
+    altarColor  := [8418940, 5, [2, [0.34, 0.10, 0.00]]];
+  end;
+
+  with _altars[MIND] do
+  begin
+    name        := 'Mind altar';
+    area        := IntToBox(272, 30, 494, 230);
+    altar       := IntToBox(390, 102, 414, 118);
+    portal      := IntToBox(394, 150, 406, 162);
+    altarColor  := [10655134, 4, [2, [0.33, 0.32, 0.00]]];
+  end;
+
+  with _altars[WATER] do
+  begin
+    name        := 'Water altar';
+    area        := IntToBox(566, 34, 718, 186);
+    altar       := IntToBox(626, 98, 642, 114);
+    portal      := IntToBox(674, 118, 682, 126);
+    altarColor  := [7103337, 2, [2, [1.39, 0.42, 0.00]]];
+  end;
+
+  with _altars[EARTH] do
+  begin
+    name        := 'Earth altar';
+    area        := IntToBox(769, 18, 1024, 234);
+    altar       := IntToBox(894, 102, 914, 122);
+    portal      := IntToBox(886, 158, 894, 166);
+    altarColor  := [6445663, 4, [2, [0.53, 0.19, 0.00]]];
+  end;
+
+  with _altars[FIRE] do
+  begin
+    name        := 'Fire altar';
+    area        := IntToBox(26, 268, 198, 450);
+    altar       := IntToBox(106, 362, 118, 374);
+    portal      := IntToBox(94, 366,  102, 370);
+    altarColor  := [6906213, 2, [2, [1.39, 0.48, 0.00]]];
+  end;
+
+  with _altars[BODY] do
+  begin
+    name        := 'Body altar';
+    area        := IntToBox(302, 312, 464, 474);
+    altar       := IntToBox(378, 382, 394, 394);
+    portal      := IntToBox(378, 406, 382, 414 );
+    altarColor  := [9865874, 5, [2, [0.35, 0.28, 0.00]]];
+  end;
+
+  print('Altar data: ' + toStr(_altars));
+end;
+
+
+// Loads all data into variables
+procedure loadData();
+begin
+  loadLobby();
+  loadAltars();
+
+end;
+
+

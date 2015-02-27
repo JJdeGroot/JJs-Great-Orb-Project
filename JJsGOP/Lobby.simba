@@ -1,0 +1,9 @@
+{*
+Lobby
+*}
+
+procedure clickWizard();
+begin
+end;
+
+
