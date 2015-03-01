@@ -2,8 +2,59 @@
 Lobby
 *}
 
-procedure clickWizard();
+// Join the team of the given wizard
+function joinWizard(wizard: TWizard): boolean;
+var
+  i, L: Integer;
+  p: TPoint;
+  bounds: TBox;
+  tpa: TPointArray;
+  atpa: T2DPointArray;
 begin
+  result := false;
+  smartImage.clear();
+  writeln('Click wizard called');
+
+  // Gather colors
+  bounds := mainscreen.getBounds();
+  wizard.colors.gatherIn(tpa, bounds);
+
+  // Check TPA length
+  L := length(tpa);
+  if L>0 then
+  begin
+    // Cluster, filter & sort into ATPA
+    atpa := tpa.cluster(tpaWidth, tpaHeight);
+    atpa.filterBetween(filterHigh, filterLow);
+    atpa.sortBySize();
+
+
+    // Check ATPA length
+    L := length(atpa);
+    if L>0 then
+    begin
+      smartImage.debugATPA(atpa);
+
+      // Attempt to click wizard
+      for i:=0 to L do
+      begin
+        writeln('I: ' + toStr(i));
+        bounds := atpa[i].getBounds();
+        gaussBox(p, bounds);
+        mouse(p);
+
+        // Join-game
+        if(isMouseOverText(['Talk', wizard.name], 500)) then
+        begin
+          ClickMouse(p.X, p.Y, 0);
+          result := chooseOption.select(['Join'], 1000);
+        end;
+        break;
+      end;
+    end;
+  end;
+
+
 end;
 
 

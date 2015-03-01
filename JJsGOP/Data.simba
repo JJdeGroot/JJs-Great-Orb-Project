@@ -68,7 +68,7 @@ begin
     begin
       name     := 'Wizard Vief';
       position := IntToBox(642, 402, 666, 418);
-      colors   := [5542581, 9, [2, [0.04, 0.93, 0.00]]];
+      colors   := [5543605, 9, [2, [0.10, 0.93, 0.00]]];
     end;
 
     // Wizards (random team)
@@ -152,7 +152,6 @@ procedure loadData();
 begin
   loadLobby();
   loadAltars();
-
 end;
 
 
