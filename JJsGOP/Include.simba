@@ -1,0 +1,10 @@
+{*
+
+    Include File
+    
+*}
+
+{$include_once JJsGOP/Data.simba}
+{$include_once JJsGOP/Altars.simba}
+{$include_once JJsGOP/Lobby.simba}
+{$include_once JJsGOP/Positioning.simba}
