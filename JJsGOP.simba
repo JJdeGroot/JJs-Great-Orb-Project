@@ -19,10 +19,7 @@ program JJsGOP;
 {$DEFINE SMART}
 {$i srl-6/srl.simba}
 {$i sps/lib/sps-rs3.simba}
-{$i JJsGOP/Data.simba}
-{$i JJsGOP/Altars.simba}
-{$i JJsGOP/Lobby.simba}
-{$i JJsGOP/Positioning.simba}
+{$i JJsGOP/Include.simba}
 
 procedure setup();
 begin
