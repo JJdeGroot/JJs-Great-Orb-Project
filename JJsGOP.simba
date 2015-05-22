@@ -17,6 +17,7 @@ Requirements:
 
 program JJsGOP;
 {$DEFINE SMART}
+
 {$i srl-6/srl.simba}
 {$i sps/lib/sps-rs3.simba}
 {$i JJsGOP/Include.simba}
@@ -46,14 +47,13 @@ begin
   writeln(toStr(conversationBox.getOptions));
 
 end;
+
 begin
   setup();
 
   //getArea();
 
-  //talk();
-
-  joinWizard(_lobby.acantha);
-
+  joinWizard(_lobby.vief);
+  selectYes();
 
 end.

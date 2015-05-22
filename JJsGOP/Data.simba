@@ -1,3 +1,9 @@
+{*
+
+Data container
+
+*}
+
 // Constants
 const
   // Altar order and indices
@@ -60,7 +66,7 @@ begin
     begin
       name     := 'Wizard Acantha';
       position := IntToBox(606, 378, 626, 390);
-      colors   := [5140301, 7, [2, [0.11, 0.81, 0.00]]];
+      colors   := [4876104, 9, [2, [0.13, 0.67, 0.00]]];
     end;
 
     // Wizard Vief (yellow team)
@@ -68,7 +74,7 @@ begin
     begin
       name     := 'Wizard Vief';
       position := IntToBox(642, 402, 666, 418);
-      colors   := [5543605, 9, [2, [0.10, 0.93, 0.00]]];
+      colors   := [4688297, 14, [2, [0.09, 0.70, 0.00]]];
     end;
 
     // Wizards (random team)

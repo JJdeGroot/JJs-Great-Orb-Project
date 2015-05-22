@@ -1,5 +1,9 @@
 {*
-Lobby
+
+Lobby methods
+- joinWizard(wizard)
+- selectYes()
+
 *}
 
 // Join the team of the given wizard
@@ -53,8 +57,21 @@ begin
       end;
     end;
   end;
+end;
 
 
+// Select 'Yes' in the conversation box
+function selectYes(): boolean;
+var
+  options: TStringArray;
+  i: Integer;
+
+begin
+  options := conversationBox.getOptions();
+  i := options.returnInArray('Yes.');
+  writeln(i);
+  if i>=0 then
+    result := conversationBox.selectOption(i);
 end;
 
 
