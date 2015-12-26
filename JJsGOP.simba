@@ -20,8 +20,13 @@ program JJsGOP;
 
 {$i srl-6/srl.simba}
 {$i sps/lib/sps-rs3.simba}
-{$i JJsGOP/Include.simba}
 
+{$i JJsGOP/Data.simba}
+{$i JJsGOP/Altars.simba}
+{$i JJsGOP/Lobby.simba}
+{$i JJsGOP/Positioning.simba}
+
+// Setup
 procedure setup();
 begin
   // SRL
@@ -40,20 +45,46 @@ end;
 procedure talk();
 var
   text: String;
+  boxes: TBoxArray;
 begin
 
   writeln(conversationBox.getSpeaker);
   writeln(conversationBox.getChat);
-  writeln(toStr(conversationBox.getOptions));
+  writeln(toStr(conversationBox.getOptions(boxes)));
 
 end;
 
+// Crafts rune at the current altar
+procedure craftRunes();
+var
+  area: Integer;
+begin
+  area := getArea();
+  writeln('Area: ' + IntToStr(area));
+
+  if area >= 0 then
+  begin
+    // TODO: check if nearby altar
+    walkToAltar(area);
+    clickAltar(area);
+  end;
+
+end;
+
+// Joins a team
+procedure joinTeam();
+begin
+  joinWizard(_lobby.acantha);
+  selectYes();
+end;
+
+
+// Mainloop
 begin
   setup();
 
-  //getArea();
+  //craftRunes();
 
-  joinWizard(_lobby.vief);
-  selectYes();
+  joinTeam();
 
 end.

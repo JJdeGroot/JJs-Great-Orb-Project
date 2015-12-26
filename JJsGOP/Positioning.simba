@@ -4,7 +4,7 @@ Positioning methods
 - setupSPS()
 - getArea()
 - getRandomBoxPoint()
-- walkToAltar()
+- walkToAltar(index)
 
 *}
 
@@ -28,6 +28,12 @@ begin
   pos := gop_map.GetPlayerPos();
   print('Pos: ' + toStr(pos));
 
+  // Check if inside lobby
+  if(_lobby.area.isPointInside(pos)) then
+  begin
+    writeln('Inside lobby');
+  end;
+
   // For each altar check if our location is inside the area
   for i:=0 to length(_altars) do
     if (_altars[i].area.isPointInside(pos)) then
@@ -48,17 +54,12 @@ begin
 end;
 
 // Walks to the altar
-function walkToAltar: Boolean;
+function walkToAltar(index: Integer): Boolean;
 var
-  box: TBox;
   pos: TPoint;
 
 begin
-  box := IntToBox(261, 222, 261+22, 222+22);
-  writeln('Box: '+ toStr(box));
-
-  pos := getRandomBoxPoint(box);
+  pos := getRandomBoxPoint(_altars[index].altar);
   writeln('Random point: ' + toStr(pos));
-
-  result := gop_map.walkToPos(pos);
+  result := gop_map.blindwalk(pos);
 end;

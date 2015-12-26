@@ -64,10 +64,11 @@ end;
 function selectYes(): boolean;
 var
   options: TStringArray;
+  boxes: TBoxArray;
   i: Integer;
 
 begin
-  options := conversationBox.getOptions();
+  options := conversationBox.getOptions(boxes);
   i := options.returnInArray('Yes.');
   writeln(i);
   if i>=0 then

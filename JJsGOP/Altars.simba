@@ -12,7 +12,7 @@ const
   filterHigh = 0;
   filterLow = 10;
 
-function clickAltar(): boolean;
+function clickAltar(index: Integer): boolean;
 var
   i, L: Integer;
   p: TPoint;
@@ -26,7 +26,7 @@ begin
 
   // Gather colors
   bounds := mainscreen.getBounds();
-  _altars[BODY].altarColor.gatherIn(tpa, bounds);
+  _altars[index].altarColor.gatherIn(tpa, bounds);
 
   // Check TPA length
   L := length(tpa);
